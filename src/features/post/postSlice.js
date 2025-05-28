@@ -14,8 +14,6 @@ const postSlice = createSlice({
             state.loading = true;
         },
         getListPostFinal: (state, action) => {
-            console.log("Check: actionpayload:", action.payload);
-
             const { data, message } = action.payload;
             state.loading = false;
             state.message = message;

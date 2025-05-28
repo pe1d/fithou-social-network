@@ -33,8 +33,8 @@ const SidebarAppView = (props) => {
                     width < 1024 && handleToggleSidebar();
                 }}
             >
-                <Menu.Item key="/" icon={<HomeOutlined />}>
-                    <Link to="/">Trang chủ</Link>
+                <Menu.Item key="/home" icon={<HomeOutlined />}>
+                    <Link to="/home">Trang chủ</Link>
                 </Menu.Item>
                 <Menu.Item key="/messages" icon={<MessageOutlined />}>
                     <Link to="/messages">Tin nhắn</Link>

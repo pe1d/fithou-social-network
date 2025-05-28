@@ -5,7 +5,6 @@ import { defaultBackDropUrl } from "./constant";
 const GroupView = (props) => {
     const { backdropSize = 32, hasName, group, style } = props;
     const { name, backDrop } = group;
-    console.log("Check: backdropSize", props);
 
     return (
         <div

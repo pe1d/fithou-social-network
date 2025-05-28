@@ -11,7 +11,11 @@ export const selectContactList = createSelector(
 // Selector lấy contact theo contactId được truyền động
 export const makeSelectContactById = (contactId) =>
     createSelector([selectContactList], (contacts) => {
-        console.log("Check: contacts:", contacts);
-
         return contacts.find((contact) => contact.ContactID === contactId);
+    });
+export const makeSelectContactByIds = (contactIds) =>
+    createSelector([selectContactList], (contacts) => {
+        return contacts.filter((contact) =>
+            contactIds.includes(contact.ContactID)
+        );
     });

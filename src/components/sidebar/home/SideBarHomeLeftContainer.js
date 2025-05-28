@@ -24,7 +24,6 @@ const ButtonStyled = styled(Button)`
 const LeftSidebarButtons = () => {
     const group = useSelector((state) => state.group);
     const { width } = useWindowSize();
-    console.log("Check: listGroup:", group);
     const listGroup = group.data;
     const renderListGroupPin = () => {
         return (
@@ -45,7 +44,7 @@ const LeftSidebarButtons = () => {
                     listGroup.map((item, index) => {
                         return (
                             <div key={item.id}>
-                                <Link to={`home/group/$x{item.id}`}>
+                                <Link to={`/home/group/${item.id}`}>
                                     <ButtonStyled type="text" block>
                                         <GroupContainer
                                             groupId={item.id}
@@ -82,7 +81,7 @@ const LeftSidebarButtons = () => {
                     >
                         <Link to="home/profile">
                             <ButtonStyled type="text" block>
-                                <AccountContainer accountId={2} hasName />
+                                <AccountContainer account={2} hasName />
                             </ButtonStyled>
                         </Link>
                         <Link to="home/friends">
@@ -130,7 +129,6 @@ const LeftSidebarButtons = () => {
                                 </div>
                             </ButtonStyled>
                         </Link>
-
                         {renderListGroupPin()}
                     </Scrollbars>
                 </div>

@@ -1,11 +1,18 @@
 import { Avatar } from "antd";
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 
-const defaultAvatarUrl =
+export const defaultAvatarUrl =
     "https://scontent.fhan3-5.fna.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=cp0_dst-png_s40x40&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=m-rQJTKZA4YQ7kNvwFKBsJs&_nc_oc=AdkzMWq-Fk0lWI-khC59qJ5J5k72lE-J87sH55dqVqBQ6z4fvtA1AUYDtZTR_UXY6-C_imgVcfTcvkV8_VLLM9Z-&_nc_zt=24&_nc_ht=scontent.fhan3-5.fna&oh=00_AfIbSiwtflgkbtAcWJedlj6JX5dkV0AGtrSYnMV2yR15VQ&oe=6842E4FA";
+const AvatarStyled = styled(Avatar)`
+    &:hover {
+        border: 1px solid rgb(88, 138, 231);
+        cursor: pointer;
+    }
+`;
 const AccountView = (props) => {
-    const { avatarSize = 32, hasName, account, style } = props;
+    const { avatarSize = 32, hasName, account, style, canHover } = props;
     const { avatarUrl, FullName } = account;
     return (
         <div
@@ -22,9 +29,12 @@ const AccountView = (props) => {
                     })`,
                 }}
             ></div> */}
-            <Avatar
+            <AvatarStyled
+                style={{
+                    border: canHover ? "1px solid rgb(88, 138, 231)" : "none",
+                }}
                 size={avatarSize}
-                src={avatarUrl ? avatarUrl : null}
+                src={avatarUrl ? avatarUrl : defaultAvatarUrl}
                 icon={<UserOutlined />}
             />
             {hasName && <div>{FullName}</div>}

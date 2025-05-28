@@ -13,7 +13,7 @@ const CardStyled = styled(Card)`
         margin-bottom: 0px !important;
     }
 `;
-const fetchPostsApi = (page) =>
+const fetchPostsApi = (page, parentId) =>
     new Promise((resolve) => {
         setTimeout(() => {
             if (page === 5) {
@@ -67,76 +67,83 @@ const NewsFeedContainer = () => {
                 alignItems: "center",
             }}
         >
-            <div
-                style={{ marginBottom: 16, width: width < 900 ? "100%" : 800 }}
-            >
+            <div style={{ marginBottom: 16, width: "100%" }}>
                 <CreatePostContainer />
             </div>
-            <InfiniteScroll
-                dataLength={posts.length}
-                next={fetchMorePosts}
-                hasMore={hasMore}
-                loader={
-                    <div
-                        style={{
-                            textAlign: "center",
-                            padding: 16,
-                        }}
-                    >
-                        <Spin />
-                    </div>
-                }
-                endMessage={
-                    <div style={{ textAlign: "center", padding: 16 }}>
-                        <b>Đã hết bài đăng</b>
-                    </div>
-                }
-            >
-                <List
-                    itemLayout="vertical"
-                    dataSource={posts}
-                    renderItem={(item) => (
-                        <CardStyled key={item.id} style={{ marginBottom: 16 }}>
-                            <Meta
-                                avatar={
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            height: "100%",
-                                            alignItems: "center",
-                                        }}
-                                    >
-                                        <Avatar
-                                            src={item.user.avatar}
-                                            icon={<UserOutlined />}
-                                        />
-                                    </div>
-                                }
-                                title={item.user.name}
-                                description={moment(item.createdAt).fromNow()}
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                            />
-                            <div style={{ marginTop: 12 }}>{item.content}</div>
-                            {item.image && (
-                                <img
-                                    src={item.image}
-                                    alt="post"
+            <div style={{ width: "100%" }}>
+                <InfiniteScroll
+                    dataLength={posts.length}
+                    next={fetchMorePosts}
+                    hasMore={hasMore}
+                    loader={
+                        <div
+                            style={{
+                                textAlign: "center",
+                                padding: 16,
+                            }}
+                        >
+                            <Spin />
+                        </div>
+                    }
+                    endMessage={
+                        <div style={{ textAlign: "center", padding: 16 }}>
+                            <b>Đã hết bài đăng</b>
+                        </div>
+                    }
+                >
+                    <List
+                        itemLayout="vertical"
+                        dataSource={posts}
+                        renderItem={(item) => (
+                            <CardStyled
+                                key={item.id}
+                                style={{ marginBottom: 16 }}
+                            >
+                                <Meta
+                                    avatar={
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                height: "100%",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            <Avatar
+                                                src={item.user.avatar}
+                                                icon={<UserOutlined />}
+                                            />
+                                        </div>
+                                    }
+                                    title={item.user.name}
+                                    description={moment(
+                                        item.createdAt
+                                    ).fromNow()}
                                     style={{
-                                        marginTop: 12,
-                                        width: "100%",
-                                        borderRadius: 8,
+                                        display: "flex",
+                                        justifyContent: "center",
                                     }}
                                 />
-                            )}
-                        </CardStyled>
-                    )}
-                    style={{ width: width < 900 ? "100%" : 800 }}
-                    // locale={{ emptyText: null }}
-                />
-            </InfiniteScroll>
+                                <div style={{ marginTop: 12 }}>
+                                    {item.content}
+                                </div>
+                                {item.image && (
+                                    <img
+                                        src={item.image}
+                                        alt="post"
+                                        style={{
+                                            marginTop: 12,
+                                            width: "100%",
+                                            borderRadius: 8,
+                                        }}
+                                    />
+                                )}
+                            </CardStyled>
+                        )}
+                        style={{ width: "100%" }}
+                        // locale={{ emptyText: null }}
+                    />
+                </InfiniteScroll>
+            </div>
         </div>
     );
 };

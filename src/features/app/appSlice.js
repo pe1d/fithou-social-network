@@ -4,6 +4,7 @@ import { APP_TYPE } from "./appType";
 const initialState = {
     isSidebarOpen: true, // Trạng thái sidebar
     data: null,
+    meInfo: null, // Thông tin người dùng hiện tại
     loading: false,
     error: null,
 };
@@ -14,6 +15,13 @@ const appSlice = createSlice({
     reducers: {
         toggleSidebar: (state) => {
             state.isSidebarOpen = !state.isSidebarOpen; // Toggle trạng thái sidebar
+        },
+        getMeInfo: (state, action) => {
+            state.loading = true; // Bắt đầu lấy thông tin người dùng
+        },
+        getMeInfoSuccess: (state, action) => {
+            state.loading = false; // Kết thúc lấy thông tin người dùng
+            state.meInfo = action.payload; // Lưu thông tin người dùng
         },
     },
     extraReducers: (builder) => {
@@ -32,5 +40,5 @@ const appSlice = createSlice({
             });
     },
 });
-export const { toggleSidebar } = appSlice.actions;
+export const { toggleSidebar, getMeInfo, getMeInfoSuccess } = appSlice.actions;
 export default appSlice.reducer;

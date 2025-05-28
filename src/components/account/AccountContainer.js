@@ -4,9 +4,8 @@ import { useSelector } from "react-redux";
 import { makeSelectContactById } from "../../features/contact/contactSelector";
 
 const AccountContainer = (props) => {
-    const { accountId } = props;
-    const account = useSelector(makeSelectContactById(accountId));
-    console.log("Check: account", account);
+    const { account } = props;
+    // const account = useSelector(makeSelectContactById(accountId));
     if (!account) {
         return null;
     }

@@ -1,22 +1,26 @@
+import React, { useEffect } from "react";
 import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import SidebarAppContainer from "../../components/sidebar/SideBarAppContainer";
 import HeaderAppContainer from "../../components/header/HeaderAppContainer";
 import ChatBoxManager from "../../components/chatbox/ChatBoxManager";
 import { useLocation } from "react-router-dom";
-import Scrollbars from "react-custom-scrollbars-2";
-
+import { useDispatch } from "react-redux";
+import { getMeInfo } from "../../features/app/appSlice";
 const { Content } = Layout;
 
 const MainLayout = () => {
     console.log("MainLayout Rendered");
-
     const location = useLocation();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getMeInfo());
+    });
     return (
         <Layout style={{ minHeight: "100vh" }}>
             {/* <Scrollbars
                 style={{ minHeight: "100vh" }}
-                autoHide
+                autoH1ide
                 autoHideTimeout={500}
                 autoHideDuration={200}
             > */}

@@ -36,7 +36,7 @@ const RightSidebarContainer = () => {
                         type="text"
                         block
                     >
-                        <AccountContainer accountId={item.ContactID} hasName />
+                        <AccountContainer account={item} hasName />
                     </ButtonStyled>
                 );
             })
